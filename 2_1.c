@@ -5,7 +5,7 @@ char* function(int a, int r) {
 	static char str[64];
 	int index = 0;
 
-	//переводим число из одной СС в другую
+	//РїРµСЂРµРІРѕРґРёРј С‡РёСЃР»Рѕ РёР· РѕРґРЅРѕР№ РЎРЎ РІ РґСЂСѓРіСѓСЋ
 	while (a != 0 && index < 63) {
 		int ost = a & mask;
 		if (ost < 10) {
@@ -18,7 +18,7 @@ char* function(int a, int r) {
 	}
 	str[index] = '\0';
 
-	//переворачиваем строку
+	//РїРµСЂРµРІРѕСЂР°С‡РёРІР°РµРј СЃС‚СЂРѕРєСѓ
 	for (int i = 0; i < index / 2; i++) {
 		char temp = str[i];
 		str[i] = str[index - i - 1];
