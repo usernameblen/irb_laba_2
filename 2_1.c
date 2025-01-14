@@ -10,7 +10,7 @@ char* function(int a, int r) {
 	}
 	int index = 0;
 
-	//переводим число из одной СС в другую
+	//РїРµСЂРµРІРѕРґРёРј С‡РёСЃР»Рѕ РёР· РѕРґРЅРѕР№ РЎРЎ РІ РґСЂСѓРіСѓСЋ
 	while (a != 0 && index < 99) {
 		int ost = a & mask;
 		if (ost < 10) {
@@ -23,15 +23,15 @@ char* function(int a, int r) {
 	}
 	str[index] = '\0';
 
-	//освобождаем память которая не понадобилась
-	//str = (char *)realloc(str, index + 1);
+	//РѕСЃРІРѕР±РѕР¶РґР°РµРј РїР°РјСЏС‚СЊ РєРѕС‚РѕСЂР°СЏ РЅРµ РїРѕРЅР°РґРѕР±РёР»Р°СЃСЊ
+	
 	str = (char*)realloc(str, index+1);
 	if (str == NULL) {
 		return NULL;
 	}
-	//переворачиваем строку
+	//РїРµСЂРµРІРѕСЂР°С‡РёРІР°РµРј СЃС‚СЂРѕРєСѓ
 	int half_len = index >> 1;
-	//for (int i = 0; i < half_len; i++) {
+	
 	for(int i = 0; i < half_len; i++){
 		char temp = str[i];
 		str[i] = str[index - i - 1];
