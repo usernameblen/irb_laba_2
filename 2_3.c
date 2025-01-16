@@ -30,6 +30,9 @@ void free_resources(char flag, ...) {
 int main() {
 	//some file
 	FILE* file = fopen("nothing.txt", "r"); // == 'f'
+	if(file == NULL){
+		return 1;
+	}
 	//some dinamic array
 	char* array = NULL;
 	array = (char*)malloc(15 * sizeof(char)); // == 'm'
