@@ -40,7 +40,7 @@ int value_of_polynomial(double* result, double x, int n_degree, ...) {
 		coefficients[i] = va_arg(coef_list, double);
 	}
 
-	//x**n_degree * coefficients[i]
+	//x**n_degree-i * coefficients[i]
 	*result = 0.0;
 	for (int i = 0; i < (n_degree + 1); i++) { //////////////////////////////////
 		*result += power(x, n_degree - i) * coefficients[i];
