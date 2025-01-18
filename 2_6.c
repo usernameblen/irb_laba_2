@@ -36,17 +36,13 @@ int value_of_polynomial(double* result, double x, int n_degree, ...) {
 	}
 
 
+	*result = 0.0;
 	for (int i = 0; i < (n_degree + 1); i++) {
 		coefficients[i] = va_arg(coef_list, double);
+	 	*result += power(x, n_degree - i) * coefficients[i];
 	}
 
-	//x**n_degree-i * coefficients[i]
-	*result = 0.0;
-	for (int i = 0; i < (n_degree + 1); i++) { 
-		*result += power(x, n_degree - i) * coefficients[i];
-	}
-
-
+	
 	va_end(coef_list);
 	free(coefficients);
 	return 0; //good
