@@ -46,7 +46,7 @@ int are_you_convex(int count_of_peaks, ...) {
 
     int all_positive = 1;
     int all_negative = 1;
-    for (int i = 0; i < count_of_peaks; ++i) {
+    for (int i = 0; i < count_of_peaks; i++) {
         if (multiplications[i] <= 0) {
             all_positive = 0;
         }
