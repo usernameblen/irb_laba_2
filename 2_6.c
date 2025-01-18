@@ -25,7 +25,7 @@ int value_of_polynomial(double* result, double x, int n_degree, ...) {
 	va_list(coef_list);
 	va_start(coef_list, n_degree);
 	if (n_degree == 0) {
-		*result = va_arg(coef_list, double); // хз делается так или нет
+		*result = va_arg(coef_list, double); 
 		return 0;
 	}
 
@@ -42,7 +42,7 @@ int value_of_polynomial(double* result, double x, int n_degree, ...) {
 
 	//x**n_degree-i * coefficients[i]
 	*result = 0.0;
-	for (int i = 0; i < (n_degree + 1); i++) { //////////////////////////////////
+	for (int i = 0; i < (n_degree + 1); i++) { 
 		*result += power(x, n_degree - i) * coefficients[i];
 	}
 
