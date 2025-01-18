@@ -11,18 +11,18 @@ int are_you_convex(int count_of_peaks, ...) {
     if (count_of_peaks < 3) {
         return -1;
     }
-
+    //array of X
     double* xs = (double*)malloc(count_of_peaks * sizeof(double));
     if (xs == NULL) {
         return 2;
     }
-
+    //array of Y
     double* ys = (double*)malloc(count_of_peaks * sizeof(double));
     if (ys == NULL) {
         free(xs);
         return 2;
     }
-
+    //array of multiplications
     double* multiplications = (double*)malloc(count_of_peaks * sizeof(double));
     if (multiplications == NULL) {
         free(xs);
@@ -33,6 +33,7 @@ int are_you_convex(int count_of_peaks, ...) {
     va_list coordinates_list;
     va_start(coordinates_list, count_of_peaks);
 
+    //write coordinates in the array
     for (int i = 0; i < count_of_peaks; i++) {
         xs[i] = va_arg(coordinates_list, double);
         ys[i] = va_arg(coordinates_list, double);
