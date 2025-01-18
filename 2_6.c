@@ -29,22 +29,12 @@ int value_of_polynomial(double* result, double x, int n_degree, ...) {
 		return 0;
 	}
 
-	//array with coefficients
-	double* coefficients = (double*)malloc((n_degree + 1) * sizeof(double));
-	if (coefficients == NULL) {
-		return 2; //memory error
-	}
-
-
 	*result = 0.0;
 	for (int i = 0; i < (n_degree + 1); i++) {
-		coefficients[i] = va_arg(coef_list, double);
-	 	*result += power(x, n_degree - i) * coefficients[i];
+	 	*result += power(x, n_degree - i) * va_arg(coef_list, double);
 	}
 
-	
 	va_end(coef_list);
-	free(coefficients);
 	return 0; //good
 }
 
@@ -56,9 +46,6 @@ int main() {
 		break;
 	case 1:
 		printf("Non-existent degree of a polynomial.");//несуществующая степень многочлена
-		break;
-	case 2:
-		printf("Error with memory.");
 		break;
 	}
 
