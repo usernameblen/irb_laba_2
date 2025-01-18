@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <string.h>
 #include <stdlib.h>
 
 double multiplication(double x1, double y1, double x2, double y2, double x3, double y3) {
