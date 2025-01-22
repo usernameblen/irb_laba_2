@@ -25,7 +25,7 @@ int find_the_index(const char* str, const char* substr) {
 				g++;
 			}
 			if (substr[g] == '\0') {
-				return i + 1;
+				return i + 1; // number of symbol at 1
 			}
 		}
 	}
@@ -37,6 +37,9 @@ int find_the_substring(const char* substr, int count_of_files, ...) {
 	if (*substr == 0) {//string is empty
 		return 1;  
 	}
+	if (count_of_files == 0) { 
+	return 2;
+        }
 	va_list(files);
 	va_start(files, count_of_files);
 
@@ -55,7 +58,7 @@ int find_the_substring(const char* substr, int count_of_files, ...) {
 
 		number_of_string = 1;
 		buffer_index = 0;
-		while ((chr = fgetc(file)) != EOF) {
+		while ((chr = fgetc(file)) != EOF) {  //while it is not end of file
 			if (chr == '\n') {
 				buf[buffer_index] = '\0';
 				//найти подстроку в строке(+символ и номер строки)
@@ -63,6 +66,7 @@ int find_the_substring(const char* substr, int count_of_files, ...) {
 				if (result_symbol != -1) {
 					printf("File number %d: string number %d, index number %d (at 1)\n", index_file + 1, number_of_string, result_symbol);
 				}
+				clean_buf(buf, buffer_index);
 				number_of_string++;
 				buffer_index = 0;
 			}
@@ -77,6 +81,7 @@ int find_the_substring(const char* substr, int count_of_files, ...) {
 			if (result_symbol != -1) {
 				printf("File number %d: string number %d, index number %d (at 1)\n", index_file+1, number_of_string, result_symbol);
 			}
+			clean_buf(buf, buffer_index);
 		}
 
 		fclose(file);
@@ -95,7 +100,10 @@ int main() {
 	case 1:
 		printf("oookeey. the substring is empty...");
 		break;
-
+		
+        case 2:
+		printf("no files... okey it is done");
+		break;
 	}
 
 	return 0;
