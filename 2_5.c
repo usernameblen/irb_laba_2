@@ -8,7 +8,7 @@ double multiplication(double x1, double y1, double x2, double y2, double x3, dou
 
 int are_you_convex(int count_of_peaks, ...) {
     if (count_of_peaks < 3) {
-        return -1;
+        return 1;
     }
     //array of X
     double* xs = (double*)malloc(count_of_peaks * sizeof(double));
@@ -39,14 +39,14 @@ int are_you_convex(int count_of_peaks, ...) {
     }
 
     for (int i = 0; i < count_of_peaks; i++) {
-        int j = (i + 1) % count_of_peaks;
-        int k = (i + 2) % count_of_peaks;
+        int j = (i + 1) % count_of_peaks; //x2 y2
+        int k = (i + 2) % count_of_peaks; //x3 y3
         multiplications[i] = multiplication(xs[i], ys[i], xs[j], ys[j], xs[k], ys[k]);
     }
 
     int all_positive = 1;
     int all_negative = 1;
-    for (int i = 0; i < count_of_peaks; i++) {
+    for (int i = 0; i < count_of_peaks; i++) { //если хоть одно скалярное произведение векторов отличается знаком от других => не выпуклый
         if (multiplications[i] <= 0) {
             all_positive = 0;
         }
@@ -73,7 +73,7 @@ int main() {
     case 0:
         printf("The polygon is convex.\n");
         break;
-    case -1:
+    case 1:
         printf("Not enough peaks.\n");
         break;
     case 2:
