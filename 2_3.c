@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<stdarg.h>
 
-void free_resources(char flag, ...) {
+int free_resources(char flag, ...) {
 	char* ptr;
 	FILE* fptr;
 	va_list args;
@@ -17,20 +17,22 @@ void free_resources(char flag, ...) {
 			free(ptr);
 		}
 		else if (flag == '\0') {
+			va_end(args);
 			break;
 		}else{
-			printf("error! flag is incorrect.\n");
-			break;
+			va_end(args);
+			//break;
+			return 1;
 		}
 		flag = va_arg(args, char);
 	}
-	va_end(args);
+	return 0;
 }
 
 int main() {
 	//some file
 	FILE* file = fopen("nothing.txt", "r"); // == 'f'
-	if(file == NULL){
+	if (file == NULL) {
 		return 1;
 	}
 	//some dinamic array
@@ -40,8 +42,14 @@ int main() {
 		return 1;
 	}
 
-	free_resources('f', file, 'm', array, '\0');
-	printf("DONE!");
-
+	switch (free_resources('f', file, 'm', array, '\0')) {
+	case 0:
+		printf("DONE!");
+		break;
+	case 1:
+		printf("error! flag is incorrect.\n");
+		break;
+	}
+	
 	return 0;
 }
